@@ -112,8 +112,6 @@ require("lazy").setup({
       'williamboman/mason-lspconfig.nvim',
     },
     config = function()
-      require('mason').setup()
-
       local lsp = require('lsp-zero').preset("recommended")
       lsp.on_attach(function(client, bufnr)
         lsp.default_keymaps({buffer = bufnr})
@@ -151,6 +149,14 @@ require("lazy").setup({
             end
           end, { "i", "s" }),
         }),
+      })
+
+      require('mason').setup({})
+      require('mason-lspconfig').setup({
+        ensure_installed = {'tsserver', 'rust_analyzer'},
+        handlers = {
+          lsp.default_setup,
+        },
       })
     end,
   },
