@@ -5,7 +5,7 @@ vim.keymap.set("n", "<C-z>", vim.cmd.redo)
 
 vim.opt.number 		      = true                  -- shows current line number
 vim.opt.relativenumber 	= true                  -- enables relative number
-vim.opt.clipboard 	    = "unnamed,unnamedplus" -- copy-paste outside vim
+-- vim.opt.clipboard 	    = "unnamed,unnamedplus" -- copy-paste outside vim
 vim.opt.cursorline     	= true                  -- highlight current line
 vim.opt.expandtab      	= true                  -- use space instead of tabs
 vim.opt.laststatus     	= 3                     -- global statusline
@@ -27,18 +27,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { "lewis6991/gitsigns.nvim", opts = {}, },
-  { -- colorscheme
-    "rose-pine/neovim", name = "rose-pine",
-    config = function()
-      -- vim.cmd.colorscheme("rose-pine")
-    end,
-  },
-  {
-    "bluz71/vim-moonfly-colors", name = "moonfly",
-    config = function()
-      vim.cmd.colorscheme("moonfly")
-    end,
-  },
+  -- colorscheme
+  { "rose-pine/neovim", name = "rose-pine", },
+  { "bluz71/vim-moonfly-colors", name = "moonfly", },
   { -- auto pairs
     "windwp/nvim-autopairs",
     config = function()
@@ -50,7 +41,7 @@ require("lazy").setup({
     main = "ibl",
     config = function()
       local indent = { char = '┊'}
-      require('ibl').setup({ indent = indent })
+      -- require('ibl').setup({ indent = indent })
     end,
   },
   { -- vim sneak
@@ -248,3 +239,14 @@ require("lazy").setup({
     },
   },
 })
+
+-- colorscheme
+vim.cmd.colorscheme("rose-pine")
+
+-- transparent
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.cmd.highlight("GitSignsAdd guibg=NONE")
+vim.cmd.highlight("GitSignsChange guibg=NONE")
+vim.cmd.highlight("GitSignsDelete guibg=NONE")
+vim.cmd.highlight("SignColumn guibg=NONE")
